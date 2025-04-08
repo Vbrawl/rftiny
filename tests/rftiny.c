@@ -8,7 +8,7 @@ int main() {
 }
 
 uint8_t rftiny_get_bit() {
-	static uint32_t sequence = SYN << 16 | GID << 8 | 0b00000001;
+	static uint32_t sequence = ((uint32_t)SYN << 16) | ((uint32_t)GID << 8) | 0b00000001;
 	static uint8_t offset = 31;
 	uint8_t bit = (sequence >> offset--) & 1;
 	return bit;
