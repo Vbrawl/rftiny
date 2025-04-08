@@ -1,5 +1,4 @@
 #include "../include/rftiny.h"
-#include <stdio.h>
 
 void rftiny_add_buf(uint8_t bit, rftiny_buf *buf) {
 	*buf = (*buf << 1) | (bit & 1);
