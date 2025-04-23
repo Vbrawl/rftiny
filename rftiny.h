@@ -10,7 +10,9 @@ typedef uint8_t rftiny_buf;
 
 void rftiny_add_buf(uint8_t bit, rftiny_buf *buf);
 rftiny_buf rftiny_find_packet();
+void rftiny_put_packet(rftiny_buf data);
 uint8_t rftiny_get_bit();
+void rftiny_put_buf(rftiny_buf buf);
 
 
 #endif

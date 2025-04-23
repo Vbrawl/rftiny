@@ -13,3 +13,5 @@ uint8_t rftiny_get_bit() {
 	uint8_t bit = (sequence >> offset--) & 1;
 	return bit;
 }
+
+void rftiny_put_buf(rftiny_buf data) {}
