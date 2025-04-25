@@ -7,24 +7,23 @@ CFLAGS = -Os -I../../ -mmcu=attiny26
 
 RECEIVER_SOURCES = ../../rftiny.c rftiny.c
 TRANSMITTER_SOURCES = ../../rftiny.c rftiny_send.c
+#TRANSMITTER_SOURCES = rftiny_send.c
 
-.PHONE: all clean
+.PHONY: all clean flash_%
 
-all: $(TX) $(TX).hex $(RX) $(RX).hex
-flash_tx: all
-	avrdude -c usbasp -p t26 -U flash:w:tx.hex:i
+all: $(TX).hex $(RX).hex
+
+flash_%: %.hex
+	avrdude -c usbasp -p t26 -U flash:w:$<:i
 
 clean:
-	rm -r $(TX) $(TX).hex $(RX) $(RX).hex
+	rm -r $(TX).elf $(TX).hex $(RX).elf $(RX).hex
 
-$(TX).hex: $(TX)
-	$(OBJCOPY) -j .text -j .data -O ihex $(TX) $(TX).hex
+%.hex: %.elf
+	$(OBJCOPY) -j .text -j .data -O ihex $< $@
 
-$(RX).hex: $(RX)
-	$(OBJCOPY) -j .text -j .data -O ihex $(RX) $(RX).hex
-
-$(TX): $(TRANSMITTER_SOURCES)
+tx.elf: $(TRANSMITTER_SOURCES)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(RX): $(RECEIVER_SOURCES)
+rx.elf: $(RECEIVER_SOURCES)
 	$(CC) $(CFLAGS) $^ -o $@

@@ -1,4 +1,4 @@
-#include "../include/rftiny.h"
+#include "../rftiny.h"
 
 int main() {
 	if(rftiny_find_packet() == 1)
