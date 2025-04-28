@@ -11,5 +11,6 @@ The goal is to support microcontrollers such as ATtiny10.
 ```
 
 Fields:
-* GID (8 bits): A code that's used for synchronization and grouping
+* SYN (8 bits): A synchronization byte, helps distinguish noise from data
+* GID (8 bits): A code used for grouping
 * CODE (8 bits): The code to send as data
