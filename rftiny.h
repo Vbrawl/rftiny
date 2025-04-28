@@ -5,8 +5,9 @@
 
 typedef uint8_t rftiny_buf;
 
-#define SYN 0b10110110
-#define GID 0b00000001
+#ifndef SYNGID
+#define SYNGID 0b11010111
+#endif
 
 void rftiny_add_buf(uint8_t bit, rftiny_buf *buf);
 rftiny_buf rftiny_find_packet();
